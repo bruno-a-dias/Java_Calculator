@@ -18,10 +18,22 @@ public class CalculatorGUI {
             return;
         }
 
-        // Entrada da operação
-        String op = JOptionPane.showInputDialog(null, "Digite a operação (+, -, *, /):");
-        if (op == null || op.length() == 0) return;
-        char operator = op.charAt(0);
+        // Botões das operações
+        Object[] options = { "+", "-", "*", "/" };
+        int opIndex = JOptionPane.showOptionDialog(
+            null,
+            "Escolha a operação:",
+            "Operação",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]
+        );
+
+        if (opIndex == JOptionPane.CLOSED_OPTION) return; // Usuário cancelou
+
+        char operator = options[opIndex].toString().charAt(0);
 
         Double result = calculate(num1, num2, operator);
 
